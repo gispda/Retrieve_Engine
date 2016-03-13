@@ -1,0 +1,15 @@
+function [ codenumb ] = codenumb( hksfeature )
+%author - Jun Li, N19119227 in New York University
+%purpose - creat the codenumb of the input hks_feature
+%question - I think it is not accurate if I only use the # of points in the i-th
+%           center to match the codebook
+
+load hksKmean.mat
+d=pdist2(hksfeature,codebook);
+%my thought: use reciprocal to code
+[M,I]=min(d');
+I=[I 1 2 3 4 5 6 7 8 9 10];%guarrantee there is no zero for 1~10
+co=tabulate(I);
+codenumb=[co(:,1) co(:,3)];
+end
+
